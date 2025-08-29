@@ -1,4 +1,4 @@
-const app = require("../src/index");
+const app = require("../src/app");
 const request = require("supertest");
 
 describe("GET /", () => {
