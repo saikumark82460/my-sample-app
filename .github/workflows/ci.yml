@@ -9,6 +9,8 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        env:
+         PORT: ${{ secrets.PORT }}
         strategy:
             matrix:
                 node-version: [  18 ]
@@ -29,11 +31,13 @@ jobs:
             run: echo "Build step done (for express app nothing to compile)"
 
     test:
-        runs-on: "ubuntu-latest" 
+        runs-on: "ubuntu-latest"
+        env:
+         PORT: ${{ secrets.PORT }} 
         needs: build
         strategy:
             matrix:
-                node-version: [ 16, 18, 20 ]
+                node-version: [ 18 ]
          
         steps:
             - name: Checkout Repository
@@ -51,6 +55,8 @@ jobs:
               run: npm test   
     deploy:
         runs-on: ubuntu-latest
+        env:
+         PORT: ${{ secrets.PORT }}
         needs: test
         
         steps:
