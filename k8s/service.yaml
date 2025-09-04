@@ -4,8 +4,8 @@ metadata:
   name: express-service
 spec:
   type: LoadBalancer
+  selector:
+    app: express-app
   ports:
     - port: 80
       targetPort: 3000
-  selector:
-    app: express-app
